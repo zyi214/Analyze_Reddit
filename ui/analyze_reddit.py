@@ -16,7 +16,7 @@ MY_PATH = MY_PATH.replace('analyze_reddit.py', '')
 ANALYZER = SentimentIntensityAnalyzer()
 api = PushshiftAPI()
 BOT_WORDS = ['@', 'LIVE']
-plt.switch_backend('Agg') 
+plt.switch_backend('Agg')
 
 
 
