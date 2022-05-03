@@ -19,4 +19,4 @@ pip3 install scipy
 pip3 install seaborn
 
 To run the web app on your local host:
-python3 manage.py runserver
+python3 ui/manage.py runserver
