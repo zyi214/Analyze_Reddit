@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% static 'graphs' as base_url %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reddit Group Analysis</title>
+        <link rel="stylesheet" type="text/css" href="{% static "/main.css" %}" />
+    </head>
+    <body>
+        <div id="header">
+            <h1>Reddit Group Analysis</h1>
+        </div>
+        <div class="frame">
+            <form action="." method="GET">
+                {% csrf_token %}
+                <table class="form">
+                {{ form }}
+                </table>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        {% if graph_img != None %}
+        <br/>
+        <h3> Analysis Results </h3>
+        <p> Group(s) Sentiment Overtime: </p>
+        <div class="image">
+            <img class="graph_img" src="{{base_url}}/{{graph_img}}" style="width:500px;height:300px">
+        </div>
+        {% endif %}
+        {% if corr != None %}
+        <p> Statistical Correlations: </p>
+        {% for c in corr %}
+        <p> {{c}} </p>
+        {% endfor %}
+        {% endif %}
+        {% if wordclouds != None %}
+        <p> Hot words in {{group_lst}}: </p>
+        {% for cloud in wordclouds %}
+        <div class="image">
+        	<img class="graph_img" src="{{base_url}}/{{cloud}}" style="width:500px;height:300px">
+        {% endfor %}
+        {% endif %}
+        {% if res != None %}
+        <p> Most Frequent Users in {{group_lst}}: </p>        
+        {% for each in res %}
+        <table class="users">
+        	<tr>
+        		{% for h in header %}
+        	    <th> {{h}}</th>
+        	    {% endfor %}
+            </tr>
+            <tr>
+            	{% for entry in each %}
+	        	<tr>
+	        	    {% for col in entry %}
+	                <td>{{ col }}</td>
+	                {% endfor %}
+	        	</tr>
+        	    {% endfor %}
+        	</tr>
+        </table>
+        <br/>
+        {% endfor %}       
+        {% endif %}
+    </body>
+</html>
