@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 {% static 'graphs' as base_url %}
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@
         {% endfor %}
         {% endif %}
         {% if res != None %}
-        <p> Most Frequent Users in {{group_lst}}: </p>        
+        <p> Most Frequent Users in {{group_lst}}: </p>
         {% for each in res %}
         <table class="users">
         	<tr>
@@ -60,7 +60,7 @@
         	</tr>
         </table>
         <br/>
-        {% endfor %}       
+        {% endfor %}
         {% endif %}
     </body>
 </html>
