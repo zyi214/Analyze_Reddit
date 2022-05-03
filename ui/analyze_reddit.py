@@ -16,6 +16,7 @@ MY_PATH = MY_PATH.replace('analyze_reddit.py', '')
 ANALYZER = SentimentIntensityAnalyzer()
 api = PushshiftAPI()
 BOT_WORDS = ['@', 'LIVE']
+plt.switch_backend('Agg') 
 
 
 
@@ -24,7 +25,7 @@ def calculate_sentiment(text):
     Calculates sentiment score of a string.
     Inputs:
         text(str): the text to be analyzed
-    Returns: 
+    Returns:
         an int between 1(very positive) and -1(vert negative)
     '''
     return ANALYZER.polarity_scores(text)['compound']
@@ -57,7 +58,7 @@ class Subreddit:
         '''
         self.name = name
         self.posts = self.create_df(start_date, end_date, n)
-        #the following variables are created from the actual data we get because 
+        #the following variables are created from the actual data we get because
         #there are some mysterious limits to the api
         self.min_epoch = self.posts.epoch_time.min()
         self.max_epoch = self.posts.epoch_time.max()
@@ -68,8 +69,8 @@ class Subreddit:
         '''
         Extract posts from a subreddit with criteria.
         Inputs:
-            start_date (inclusive), end_date (exclusive)(lists): two lists of 
-              three elements contaiining year, month, date of limit to extract 
+            start_date (inclusive), end_date (exclusive)(lists): two lists of
+              three elements contaiining year, month, date of limit to extract
               the posts. Exp. [2020, 1, 1].
             n (int): limit on number of posts to extract
         Returns: a list of submissions
@@ -86,13 +87,13 @@ class Subreddit:
     def create_df(self, start_date, end_date, n):
         '''
         Create a pandas dataframe from a list of submissions.
-        Inputs: 
-            start_date (inclusive), end_date (exclusive)(lists): two lists of 
-              three elements contaiining year, month, date of limit to extract 
+        Inputs:
+            start_date (inclusive), end_date (exclusive)(lists): two lists of
+              three elements contaiining year, month, date of limit to extract
               the posts. Exp. [2020, 1, 1].
             n (int): limit on number of posts to extract
-        Returns: a pandas dataframe with author, post title, post content, 
-          time the post was created (ymd, hour, minute, second) and sentiment 
+        Returns: a pandas dataframe with author, post title, post content,
+          time the post was created (ymd, hour, minute, second) and sentiment
           score of the post
         '''
         submissions = self.get_posts(start_date, end_date, n)
@@ -136,15 +137,15 @@ def get_group_data(names, start_date, end_date, n, plot_title):
         n (int): limit on number of posts to extract
         plot_title(str): name of plot, also filename of .png file
     Returns:
-        a list of pandas DataFrame of all subreddits, with author, post title, 
-          post content, time the post was created (ymd, hour, minute, second) 
+        a list of pandas DataFrame of all subreddits, with author, post title,
+          post content, time the post was created (ymd, hour, minute, second)
           and sentiment score of the post.
     Outputs:
         plot_title.png file with scores vs. time for all subreddits
     Sample use:  k = analyze_reddit.get_group_data(['SandersForPresident', '
     Pete_Buttigieg'], [2020, 2,6], [2020, 2, 12], 50000, 'bernie_vs_pete')
     '''
-    min_epoch = 0 
+    min_epoch = 0
     max_epoch = 10**11
     subreddits = []
     plt.clf()
@@ -174,7 +175,7 @@ def get_group_data(names, start_date, end_date, n, plot_title):
         dates = get_changes(sub)
         if len(dates) != 0:
             for date, sent, diff in dates:
-                if diff < 0: 
+                if diff < 0:
                     ax.arrow(date, sent - sent_range/5, 0, sent_range/10, \
                         head_width=0.1, head_length=sent_range/40)
                 if diff > 0:
@@ -182,7 +183,7 @@ def get_group_data(names, start_date, end_date, n, plot_title):
                         head_width=0.1, head_length=sent_range/40)
                 l_change.append(date)
         l_change_all.append(l_change)
-    ax.ticklabel_format(useOffset=False, style = 'plain')  
+    ax.ticklabel_format(useOffset=False, style = 'plain')
     plt.xticks(rotation=90)
     plt.legend(loc='best')
     plt.savefig(MY_PATH + 'mysite/static/graphs/' + plot_title + '.png',\
@@ -195,7 +196,7 @@ def get_users_data(subreddits, post_per_week = 10):
     Analyze users who post frequently in all groups.
     inputs:
         subreddits(list): a list of Subreddit objects
-        post_per_week(int): minimum number of posts per week to consider a user 
+        post_per_week(int): minimum number of posts per week to consider a user
           a 'frequent poster'
     '''
     headers = ['Author', 'Is_bot', 'Mean_sentiment_score', 'Sentiment_score_std', \
@@ -322,7 +323,7 @@ def go(names, start_date, end_date, n, post_per_week, plot_title, \
     analyze_user=False, analyze_words=False, analyze_correlation=False):
     '''
     GO!
-    k = analyze_reddit.go(['SandersForPresident', 'Pete_Buttigieg'], 
+    k = analyze_reddit.go(['SandersForPresident', 'Pete_Buttigieg'],
     [2020, 2,6], [2020, 2, 12], 50000, 10, 'bernie_vs_pete', True)
     '''
     results = []
