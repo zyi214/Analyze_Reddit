@@ -71,7 +71,7 @@ class Subreddit:
         Inputs:
             start_date (inclusive), end_date (exclusive)(lists): two lists of
               three elements contaiining year, month, date of limit to extract
-              the posts. Exp. [2020, 1, 1].
+              the posts. Exp. [2022, 1, 1].
             n (int): limit on number of posts to extract
         Returns: a list of submissions
         '''
@@ -90,7 +90,7 @@ class Subreddit:
         Inputs:
             start_date (inclusive), end_date (exclusive)(lists): two lists of
               three elements contaiining year, month, date of limit to extract
-              the posts. Exp. [2020, 1, 1].
+              the posts. Exp. [2022, 1, 1].
             n (int): limit on number of posts to extract
         Returns: a pandas dataframe with author, post title, post content,
           time the post was created (ymd, hour, minute, second) and sentiment
@@ -323,8 +323,8 @@ def go(names, start_date, end_date, n, post_per_week, plot_title, \
     analyze_user=False, analyze_words=False, analyze_correlation=False):
     '''
     GO!
-    k = analyze_reddit.go(['SandersForPresident', 'Pete_Buttigieg'],
-    [2020, 2,6], [2020, 2, 12], 50000, 10, 'bernie_vs_pete', True)
+    k = analyze_reddit.go(['surfing', 'snowboarding'],
+    [2021, 11,15], [2022, 4, 15], 50000, 10, 'surfing_vs_snowboarding', True)
     '''
     results = []
     post_count_groups, l_change_all, subreddits = \

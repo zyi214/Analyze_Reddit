@@ -7,7 +7,7 @@ This web application crawls Subreddit groups and analyzes posts in these groups 
 This web application can then produce the analyses below (as selected by the user):
 - Statistical correlation among the groups
 - The "hot words" (high frequency words) for the groups
-- Frequent users of the groups
+- User analysis, including the sentiment of the group and the frequent users
 
 Packages to install beforehand - commands to run:
 pip3 install pandas
