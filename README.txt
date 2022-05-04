@@ -2,7 +2,7 @@ This web application crawls Subreddit groups and analyzes posts in these groups 
 - Subreddit group names
 - Start date and end date for the posts
 - # of posts to include in each subreddit group
-- (optional, if frequent user analysis desired) the posts per week threshold for a user to be considered a frequent user
+- (optional, if user analysis desired) the posts per week threshold for a user to be considered a frequent user
 
 This web application can then produce the analyses below (as selected by the user):
 - Statistical correlation among the groups
