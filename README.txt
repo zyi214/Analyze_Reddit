@@ -1,7 +1,7 @@
 This web application crawls Subreddit groups and analyzes posts in these groups based on the following user inputs:
-- Subreddit group names
-- Start date and end date for the posts
-- # of posts to include in each subreddit group
+- Subreddit group names (currently down)
+- Start date and end date for the posts (currently down)
+- # of posts to include in each subreddit group (currently down)
 - (optional, if user analysis desired) the posts per week threshold for a user to be considered a frequent user
 
 This web application can then produce the analyses below (as selected by the user):
@@ -20,3 +20,5 @@ pip3 install seaborn
 
 To run the web app on your local host:
 python3 ui/manage.py runserver
+
+** Note that due to API dependency issues, currently please run with recommended subreddits "trump" and "JoeBiden" and select a date range in 2022. **
