@@ -34,11 +34,11 @@ class SearchForm(forms.Form):
         label='# of posts to include in each subreddit',
         help_text='Please enter an integer (default=500)',
         required=False)
-    show_corr = forms.BooleanField(label='Show statistical correlations',
+    show_corr = forms.BooleanField(label='Show statistical correlations (currently down)',
                                    required=False)
-    show_hotwords = forms.BooleanField(label='Show hot words',
+    show_hotwords = forms.BooleanField(label='Show hot words (currently down)',
                                    required=False)
-    show_frequser = forms.BooleanField(label='Show frequent users',
+    show_frequser = forms.BooleanField(label='Show user analysis',
                                    required=False)
     ppw = forms.IntegerField(
         label='Posts per week',
